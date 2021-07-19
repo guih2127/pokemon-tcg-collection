@@ -6,7 +6,12 @@ import CardListFilter from './CardListFilter';
 const Collection = () => {
     const [cards, setCards] = useState([]);
     const [sets, setSets] = useState([]);
+
     const [selectedSet, setSelectedSet] = useState(null);
+    const [pageSize, setPageSize] = useState(null);
+    const [order, setOrder] = useState(null);
+
+    const [cardlistLoading, setCardListLoading] = useState(true);
 
     const createSearchQuery = () => {
         let queryString = '';
@@ -20,7 +25,9 @@ const Collection = () => {
     
     useEffect(() => {
         const getSets = async () => {
-            const { data } = await pokemonCardsAPI.get('sets');
+            const { data } = await pokemonCardsAPI.get('sets', {
+                params: { orderBy: 'name' }
+            });
 
             setSets(data.data);
         }
@@ -32,27 +39,36 @@ const Collection = () => {
         createSearchQuery();
 
         const getCards = async () => {
+            setCardListLoading(true);
             const { data } = await pokemonCardsAPI.get('cards', {
-                params: { q: createSearchQuery(), pageSize: 16 }
+                params: { q: createSearchQuery(), pageSize: pageSize.value, orderBy: order.value }
             });
             
             setCards(data.data);
+            setCardListLoading(false);
         }
 
         if (selectedSet) {
             getCards();
         } // ver maneira de obter os sets e apenas depois obter os cards...
 
-    }, [selectedSet]);
+    }, [selectedSet, pageSize, order]);
 
     return (
         <div>
             <CardListFilter
                 selectedSet={selectedSet}
                 setSelectedSet={setSelectedSet}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+                order={order}
+                setOrder={setOrder}
                 sets={sets}
             />
-            <CardList cards={cards} />
+            <CardList 
+                cards={cards}
+                loading={cardlistLoading}
+            />
         </div>
     );
 };

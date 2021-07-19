@@ -8,8 +8,7 @@ const CardImage = styled.img`
 `
 
 const CardContainer = styled.div`
-    margin: 15px;
-    border-radius: 30px;
+    margin: 5px;
 `
 
 const Card = ({ name, image, type, rarity, set }) => {
