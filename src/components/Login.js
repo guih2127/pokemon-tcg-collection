@@ -5,7 +5,6 @@ export default function Login({ setToken }) {
     const [password, setPassword] = useState();
 
     async function loginUser(credentials) {
-        console.log(credentials);
         return fetch('https://localhost:44313/api/AuthManagement/Login', {
             method: 'POST',
             headers: {
