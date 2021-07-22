@@ -35,7 +35,7 @@ const Card = ({ id, name, image, type, rarity, set, addToCollection, removeFromC
 
     return (
         <CardContainer>
-            <div className="ui card">
+            <div className="ui card" style={isUserCard ? { 'backgroundColor': 'green' } : {'backgroundColor': 'red'}}>
                 <div className="image">
                     <CardImage src={image} alt={name} />
                 </div>

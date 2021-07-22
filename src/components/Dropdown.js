@@ -3,12 +3,6 @@ import React, { useEffect, useState, useRef } from 'react';
 const Select = ({ options, label, selectedOption, setSelectedOption }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();
-    
-    useEffect(() => {
-        if (!selectedOption && options) {
-            setSelectedOption(options[0]);
-        }
-    });
 
     useEffect(() => {
         const onBodyClick = (event) => {

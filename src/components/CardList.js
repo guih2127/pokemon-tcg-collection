@@ -13,22 +13,7 @@ const Component = styled.div`
     text-align: center;
 `
 
-const CardList = ({ cards, loading }) => {
-    const [userCards, setUserCards] = useState([]);
-
-    const getUserCards = async () => {
-        const config = {
-            headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('token')).token}` }
-        };
-
-        const data = await axios.get('https://localhost:44313/api/UserCard/cards', config);
-
-        setUserCards(data.data);
-    }
-
-    useEffect(() => {
-        getUserCards();
-    }, []);
+const CardList = ({ cards, loading, userCards, getUserCards }) => {
 
     const addToCollection = async (id) => {
         try {
@@ -41,7 +26,7 @@ const CardList = ({ cards, loading }) => {
             // Handle Error Here
             console.error(err);
         }
-    
+
         getUserCards();
     };
 
@@ -56,7 +41,7 @@ const CardList = ({ cards, loading }) => {
             // Handle Error Here
             console.error(err);
         }
-    
+
         getUserCards();
     };
 
