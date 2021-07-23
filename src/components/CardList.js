@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 import Loader from './Loader';
@@ -7,12 +7,12 @@ import axios from 'axios';
 const Component = styled.div`
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
-    margin: 10px;
     padding: 10px;
     text-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 1200px;
 `
-
 const CardList = ({ cards, loading, userCards, getUserCards }) => {
 
     const addToCollection = async (id) => {
@@ -64,9 +64,7 @@ const CardList = ({ cards, loading, userCards, getUserCards }) => {
 
     if (loading) {
         return (
-            <Component>
-                <Loader />
-            </Component>
+            <Loader />
         );
     }
 

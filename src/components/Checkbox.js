@@ -3,13 +3,13 @@ import react from 'react';
 const Checkbox = ({ selectedValue, setSelectedValue, text }) => {
 
     return (
-        <div className="ui slider checkbox">
+        <div style={{'padding': '10px'}} className={"ui toggle checkbox"}>
             <input 
                 defaultChecked={selectedValue} 
                 type="checkbox" 
-                name="newsletter" 
+                name="collection" 
                 onChange={() => setSelectedValue(!selectedValue)} />
-            <label>{text}</label>
+            <label style={{'fontSize': '18px', 'color': 'white', 'fontWeight': 1000}}>{text}</label>
         </div>
     )
 }

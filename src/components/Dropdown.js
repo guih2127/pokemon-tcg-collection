@@ -35,9 +35,9 @@ const Select = ({ options, label, selectedOption, setSelectedOption }) => {
     });
 
     return (
-        <div ref={ref} className="ui form">
+        <div ref={ref} className="ui form" style={{'padding': '10px'}}>
             <div className="field">
-                <label className="label">{label}</label>
+                <label style={{"color": "#FFFAF0", "fontSize": "18px"}}>{label}</label>
                 <div onClick={() => setOpen(!open)} className={`ui selection dropdown ${open ? 'visible active' : ''}`}>
                     <i className="dropdown icon"></i>
                     <div className="text">{selectedOption ? selectedOption.name : ''}</div>

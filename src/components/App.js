@@ -1,5 +1,7 @@
 import React from 'react';
 import Collection from './Collection';
+import Footer from './Footer';
+import Header from './Header';
 import Login from './Login';
 import useToken from './UseToken';
 
@@ -12,7 +14,9 @@ const App = () => {
 
     return (
         <div>
+            <Header />
             <Collection />
+            <Footer />
         </div>
     );
 };

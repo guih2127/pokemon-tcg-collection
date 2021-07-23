@@ -6,6 +6,12 @@ import axios from 'axios';
 import orderOptions from '../options/orderOptions';
 import pageOptions from '../options/pageOptions';
 import rarityOptions from '../options/rarityOptions';
+import styled from 'styled-components';
+
+const CollectionDiv = styled.div`
+    display: flex;
+    background-color: #DC143C;
+`
 
 const Collection = () => {
     const [cards, setCards] = useState([]);
@@ -39,13 +45,13 @@ const Collection = () => {
 
         setUserCards(data.data);
     }
-    
+
     const getCards = async () => {
         setCardListLoading(true);
         const { data } = await pokemonCardsAPI.get('cards', {
             params: { q: createSearchQuery() !== '()' ? createSearchQuery() : null, pageSize: pageSize.value, orderBy: order.value }
         });
-        
+
         setCards(data.data);
         setCardListLoading(false);
     }
@@ -124,7 +130,7 @@ const Collection = () => {
     useEffect(() => {
         setSelectedRarity(rarities[0]);
     }, [subtype])
-    
+
     useEffect(() => {
         getSets();
         getUserCards();
@@ -136,7 +142,7 @@ const Collection = () => {
     }, [selectedSet, selectedSerie, selectedRarity, subtype, pageSize, order, onlyUserCards]);
 
     return (
-        <div>
+        <CollectionDiv>
             <CardListFilter
                 selectedSet={selectedSet}
                 setSelectedSet={setSelectedSet}
@@ -156,13 +162,14 @@ const Collection = () => {
                 selectedRarity={selectedRarity}
                 rarities={rarities}
             />
-            <CardList 
+            <CardList
                 cards={cards}
                 loading={cardlistLoading}
                 userCards={userCards}
                 getUserCards={getUserCards}
             />
-        </div>
+
+        </CollectionDiv>
     );
 };
 

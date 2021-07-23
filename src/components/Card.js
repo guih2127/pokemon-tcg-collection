@@ -1,19 +1,47 @@
 import styled from 'styled-components';
 
 const CardImage = styled.img`
-    min-width: 290px;
-    max-width: 290px;
-    min-height: 400px;
-    max-height: 400px;
+    width: 285px;
+    height: 375px;
 `
 
 const CardContainer = styled.div`
-    margin: 5px;
+    margin: 15px;
+    border: 2px solid #FFFAF0;
+    background-color: #FFFAF0;
 `
 
 const AddToCollectionDiv = styled.div`
-    border: 1px solid black;
     cursor: pointer;
+    background-color: #228B22;
+    color: black;
+    padding: 5px;
+    border-top: 3px solid white;
+`
+
+const RemoveFromCollectionDiv = styled.div`
+    cursor: pointer;
+    background-color: #B22222;
+    color: black;
+    padding: 5px;
+    border-top: 3px solid white;
+`
+
+const DivCardInfos = styled.div`
+    padding-top: 5px;
+    padding-bottom: 5px;
+`
+
+const DivCardInfo = styled.div`
+    font-size: 16px;
+    font-weight: 1000;
+    color: #FFFAF0;
+    margin: 10px;
+`
+const SpanCollection = styled.div`
+    font-size: 16px;
+    font-weight: 1000;
+    color: #FFFAF0;
 `
 
 const Card = ({ id, name, image, type, rarity, set, addToCollection, removeFromCollection, isUserCard }) => {
@@ -21,40 +49,38 @@ const Card = ({ id, name, image, type, rarity, set, addToCollection, removeFromC
         if (!isUserCard) {
             return (
                 <AddToCollectionDiv onClick={() => addToCollection(id)}>
-                    Adicionar à coleção
+                    <SpanCollection>Add to Collection</SpanCollection>
                 </AddToCollectionDiv>
             );
         }
         
         return (
-            <AddToCollectionDiv onClick={() => removeFromCollection(id)}>
-                Remover da coleção
-            </AddToCollectionDiv>
+            <RemoveFromCollectionDiv onClick={() => removeFromCollection(id)}>
+                <SpanCollection>Remove from Collection</SpanCollection>
+            </RemoveFromCollectionDiv>
         );
     };
 
     return (
         <CardContainer>
-            <div className="ui card" style={isUserCard ? { 'backgroundColor': 'green' } : {'backgroundColor': 'red'}}>
-                <div className="image">
-                    <CardImage src={image} alt={name} />
-                </div>
-                <div className="content">
-                    <a className="header" href="/">
-                        {name}
-                    </a>
-                    <div className="meta">
-                        <span>{type}</span>
-                    </div>
-                    <div className="description">
-                        {set}
-                    </div>
-                    <div className="extra content">
-                        {rarity ? rarity : 'Especial'}
-                    </div>
-                </div>
-                <ConditionalAddToCollectionDiv />
+            <div>
+                <CardImage src={image} alt={name} />
             </div>
+            <DivCardInfos style={{'backgroundColor': isUserCard ? '#228B22' : '#ff3333'}}>
+                <DivCardInfo href="/">
+                    Name: {name}
+                </DivCardInfo>
+                <DivCardInfo>
+                    Type: {type}
+                </DivCardInfo>
+                <DivCardInfo>
+                    Set: {set}
+                </DivCardInfo>
+                <DivCardInfo>
+                    Rarity: {rarity ? rarity : 'Especial'}
+                </DivCardInfo>
+            </DivCardInfos>
+            <ConditionalAddToCollectionDiv />
         </CardContainer>
     );
 };

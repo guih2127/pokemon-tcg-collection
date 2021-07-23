@@ -29,7 +29,6 @@ const CardListFilter = ({
     const DivCardFilter = styled.div`
         margin: 10px;
         padding: 10px;
-        border: 1px solid black;
     `;
     
     return (
@@ -37,7 +36,7 @@ const CardListFilter = ({
             <Checkbox
                 selectedValue={onlyUserCards}
                 setSelectedValue={setOnlyUserCards}
-                text={"Only collection cards"}
+                text={"Collection"}
             />
 
             <Dropdown
