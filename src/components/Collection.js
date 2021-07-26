@@ -11,9 +11,11 @@ import styled from 'styled-components';
 const CollectionDiv = styled.div`
     display: flex;
     background-color: #DC143C;
+    min-height: 1200px;
+    padding-top: 70px;
 `
 
-const Collection = () => {
+const Collection = ({ isCollection }) => {
     const [cards, setCards] = useState([]);
     const [sets, setSets] = useState([]);
     const [userCards, setUserCards] = useState([]);
@@ -22,7 +24,7 @@ const Collection = () => {
     const [rarities, setRarities] = useState(rarityOptions(subtype));
 
     const [selectedSet, setSelectedSet] = useState(null);
-    const [onlyUserCards, setOnlyUserCards] = useState(false);
+    const [onlyUserCards, setOnlyUserCards] = useState(isCollection);
     const [selectedSerie, setSelectedSerie] = useState(null);
     const [selectedRarity, setSelectedRarity] = useState(null);
 
@@ -128,18 +130,26 @@ const Collection = () => {
     }
 
     useEffect(() => {
+        console.log('entrou no useEffect 1')
         setSelectedRarity(rarities[0]);
     }, [subtype])
 
     useEffect(() => {
+        console.log('entrou no useEffect 2');
         getSets();
         getUserCards();
     }, []);
 
     useEffect(() => {
+        console.log('entrou no useEffect 3')
+        setSelectedSet(null);
+    },[selectedSerie])
+
+    useEffect(() => {
+        console.log('entrou no useEffect 4');
         createSearchQuery();
         getCards();
-    }, [selectedSet, selectedSerie, selectedRarity, subtype, pageSize, order, onlyUserCards]);
+    }, [selectedSet, selectedSerie, selectedRarity, subtype, pageSize, order, onlyUserCards, userCards]);
 
     return (
         <CollectionDiv>

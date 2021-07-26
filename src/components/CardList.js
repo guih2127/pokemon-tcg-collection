@@ -11,7 +11,7 @@ const Component = styled.div`
     text-align: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    max-height: 1200px;
+    max-height: 1120px;
 `
 const CardList = ({ cards, loading, userCards, getUserCards }) => {
 

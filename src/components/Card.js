@@ -9,6 +9,7 @@ const CardContainer = styled.div`
     margin: 15px;
     border: 2px solid #FFFAF0;
     background-color: #FFFAF0;
+    max-height: 553px;
 `
 
 const AddToCollectionDiv = styled.div`
@@ -16,7 +17,6 @@ const AddToCollectionDiv = styled.div`
     background-color: #228B22;
     color: black;
     padding: 5px;
-    border-top: 3px solid white;
 `
 
 const RemoveFromCollectionDiv = styled.div`
@@ -24,7 +24,6 @@ const RemoveFromCollectionDiv = styled.div`
     background-color: #B22222;
     color: black;
     padding: 5px;
-    border-top: 3px solid white;
 `
 
 const DivCardInfos = styled.div`
@@ -66,7 +65,7 @@ const Card = ({ id, name, image, type, rarity, set, addToCollection, removeFromC
             <div>
                 <CardImage src={image} alt={name} />
             </div>
-            <DivCardInfos style={{'backgroundColor': isUserCard ? '#228B22' : '#ff3333'}}>
+            {/* <DivCardInfos style={{'backgroundColor': isUserCard ? '#228B22' : '#ff3333'}}>
                 <DivCardInfo href="/">
                     Name: {name}
                 </DivCardInfo>
@@ -79,7 +78,7 @@ const Card = ({ id, name, image, type, rarity, set, addToCollection, removeFromC
                 <DivCardInfo>
                     Rarity: {rarity ? rarity : 'Especial'}
                 </DivCardInfo>
-            </DivCardInfos>
+            </DivCardInfos> */}
             <ConditionalAddToCollectionDiv />
         </CardContainer>
     );
